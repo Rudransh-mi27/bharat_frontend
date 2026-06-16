@@ -16,7 +16,9 @@ export const AuthProvider = ({ children }) => {
   const checkLoginStatus = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("/api/v1/users/me");
+      const res = await axios.get("/api/v1/users/me", {
+        withCredentials: true,
+      });
       if (res.data && res.data.data && res.data.data.data) {
         setUser(res.data.data.data);
       }
@@ -37,12 +39,18 @@ export const AuthProvider = ({ children }) => {
     try {
       setError(null);
       setLoading(true);
-      const res = await axios.post("/api/v1/users/signup", {
-        name,
-        email,
-        password,
-        passwordConfirm,
-      });
+      const res = await axios.post(
+        "/api/v1/users/signup",
+        {
+          name,
+          email,
+          password,
+          passwordConfirm,
+        },
+        {
+          withCredentials: true,
+        },
+      );
       if (res.data && res.data.data && res.data.data.user) {
         setUser(res.data.data.user);
       }
@@ -61,7 +69,13 @@ export const AuthProvider = ({ children }) => {
     try {
       setError(null);
       setLoading(true);
-      const res = await axios.post("/api/v1/users/login", { email, password });
+      const res = await axios.post(
+        "/api/v1/users/login",
+        { email, password },
+        {
+          withCredentials: true,
+        },
+      );
       if (res.data && res.data.data && res.data.data.user) {
         setUser(res.data.data.user);
       }
