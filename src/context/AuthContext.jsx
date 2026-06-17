@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
     try {
       setLoading(true);
       const res = await axios.get("/api/v1/users/me", {
-        withCredentials: true,
+        
       });
       if (res.data && res.data.data && res.data.data.data) {
         setUser(res.data.data.data);
@@ -48,7 +48,7 @@ export const AuthProvider = ({ children }) => {
           passwordConfirm,
         },
         {
-          withCredentials: true,
+          
         },
       );
       if (res.data && res.data.data && res.data.data.user) {
@@ -72,9 +72,7 @@ export const AuthProvider = ({ children }) => {
       const res = await axios.post(
         "/api/v1/users/login",
         { email, password },
-        {
-          withCredentials: true,
-        },
+        
       );
       if (res.data && res.data.data && res.data.data.user) {
         setUser(res.data.data.user);

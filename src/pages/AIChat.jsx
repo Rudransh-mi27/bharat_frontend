@@ -54,7 +54,7 @@ const AIChat = () => {
       try {
         setHistoryLoading(true);
         const res = await axios.get("/api/v1/ai/history", {
-          withCredentials: true,
+          
         });
         if (res.data?.data?.chats) {
           // Sync history (ascending order for thread representation)
@@ -103,7 +103,7 @@ const AIChat = () => {
           topic,
           actionType,
         },
-        { withCredentials: true },
+        
       );
 
       if (res.data?.data?.chat) {
@@ -134,7 +134,7 @@ const AIChat = () => {
     )
       return;
     try {
-      await axios.delete("/api/v1/ai/history", { withCredentials: true });
+      await axios.delete("/api/v1/ai/history");
       setChats([]);
     } catch (err) {
       setError("Could not clear history.");
